@@ -26,3 +26,7 @@ End-to-end commerce system covering catalog, checkout, orders, inventory, shipme
 4. Admin panel: `http://localhost:3001`
 
 Do not commit real environment files. Production hosts, registry credentials, and API keys stay in local env files.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
