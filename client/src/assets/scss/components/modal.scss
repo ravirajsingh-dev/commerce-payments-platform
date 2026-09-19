@@ -1,0 +1,109 @@
+@use "../variables" as *;
+
+.common-modal {
+  .modal-content {
+    background: linear-gradient(
+      180deg,
+      $black-alpha-deep,
+      $surface-alpha-deep
+    ) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid $theme-alpha-strong;
+    color: $theme-text;
+    overflow: hidden;
+  }
+
+  .common-modal-header {
+    position: relative;
+    background-color: $theme-bg;
+    border-bottom: 1px solid $theme-alpha-mid;
+    padding: 1.5rem 3.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .btn-close {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      margin: 0;
+      transform: translateY(-50%);
+      --bs-btn-close-opacity: 0.9;
+      --bs-btn-close-hover-opacity: 1;
+      --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d1b58a'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+
+      &:hover,
+      &:focus {
+        opacity: 1;
+        box-shadow: 0 0 0 0.2rem rgba($theme-secondary, 0.22);
+      }
+    }
+  }
+
+  .common-modal-title {
+    color: $theme-primary;
+    font-size: 1.8rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .common-modal-icon {
+    color: $theme-primary;
+    font-size: 2.5rem;
+    line-height: 1;
+
+    &.is-success {
+      color: $theme-success;
+    }
+
+    &.is-warning {
+      color: $theme-warning;
+    }
+
+    &.is-danger {
+      color: $theme-danger;
+    }
+  }
+
+  .common-modal-body {
+    color: $theme-heading;
+    font-size: 1.0625rem;
+    text-align: center;
+    padding: 1.5rem;
+    background-color: $theme-surface;
+  }
+
+  .common-modal-footer {
+    background: transparent !important;
+    border-top: 1px solid $theme-alpha-mid;
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .common-modal-credentials {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .common-modal-credential-item {
+    margin-bottom: 0.9375rem;
+  }
+
+  .common-modal-status {
+    margin-top: 0.9375rem;
+    text-align: center;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.9375rem;
+  }
+
+  .common-modal-note-warning {
+    color: $theme-warning;
+    font-weight: bold;
+  }
+}

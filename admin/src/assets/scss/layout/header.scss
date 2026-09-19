@@ -1,0 +1,317 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// -----------------------------------------------------------------------------
+// Site header — e-commerce style (executive gold / dark theme tokens)
+// -----------------------------------------------------------------------------
+
+.site-header {
+  --layout-header-height: 0px;
+  position: relative;
+  z-index: 1050;
+}
+
+.site-header--offset {
+  padding-top: var(--layout-header-height);
+}
+
+// Top trust / social ribbon
+.site-header__ribbon {
+  background: linear-gradient(
+    90deg,
+    $bg-alpha-strong 0%,
+    rgba($theme-bg, 0.75) 50%,
+    $bg-alpha-strong 100%
+  );
+  border-bottom: 1px solid $theme-border-muted;
+  padding: 0.45rem 0;
+}
+
+.site-header__shell {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(0.75rem, 3vw, 1.5rem);
+  padding-right: clamp(0.75rem, 3vw, 1.5rem);
+}
+
+.site-header__ribbon .site-header__shell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Main bar (sticky target)
+.site-header__bar {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba($theme-bg, 0.92) 0%,
+    $black-alpha-deep 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid $theme-alpha-strong;
+  box-shadow: 0 1px 0 $theme-alpha-faint inset;
+}
+
+.site-header__bar--sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  box-shadow:
+    0 8px 32px $black-alpha-mid,
+    0 1px 0 $theme-alpha-faint inset;
+  @include transition(0.35s);
+}
+
+.site-header__row {
+  display: grid;
+  grid-template-columns: minmax(0, auto) 1fr auto;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.25rem);
+  min-height: 88px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+// Admin portal: single clean bar — logo + title + user, no primary nav
+.site-header__row--admin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(0.75rem, 2.5vw, 1.5rem);
+  min-height: 76px;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+
+.site-header--admin .site-header__bar {
+  background: linear-gradient(
+    125deg,
+    rgba($luxury-bg-primary, 0.97) 0%,
+    rgba($luxury-surface-card, 0.88) 42%,
+    rgba($black, 0.94) 100%
+  );
+  border-bottom: 1px solid rgba($luxury-primary-gold, 0.22);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba($luxury-primary-gold, 0.12) inset;
+}
+
+.site-header__start {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.65rem, 2vw, 1.35rem);
+  min-width: 0;
+  flex: 1;
+}
+
+.site-header__identity {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.site-header__identity-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.site-header__identity-title {
+  font-family: $cerebri-semi;
+  font-size: clamp(0.98rem, 2vw, 1.22rem);
+  font-weight: 700;
+  color: $theme-heading;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: min(56vw, 440px);
+}
+
+.site-header__identity-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $theme-muted;
+}
+
+.site-header__identity-icon {
+  flex-shrink: 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  color: $theme-secondary;
+}
+
+.site-header__user-chip {
+  flex-shrink: 0;
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: $theme-text;
+  background: linear-gradient(
+    145deg,
+    rgba($luxury-primary-gold, 0.14) 0%,
+    rgba($luxury-bg-primary, 0.65) 100%
+  );
+  border: 1px solid rgba($luxury-primary-gold, 0.35);
+  box-shadow:
+    0 0 0 1px rgba($luxury-primary-gold, 0.08),
+    0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+.site-header__logout-btn {
+  border-radius: 999px;
+}
+
+// Logo
+.site-header__brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 72px;
+  min-height: 72px;
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 0 0 1px $theme-alpha-mid;
+  }
+
+  img {
+    display: block;
+    height: auto;
+    max-height: 80px;
+    width: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .logo-spinner {
+    min-height: 72px;
+    min-width: 72px;
+  }
+}
+
+// Actions: full bar at 1200px+; below that admin shows nav toggle only (logout via sidebar)
+.site-header__actions {
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  min-width: 0;
+
+  @media (min-width: 1200px) {
+    display: flex;
+  }
+}
+
+.site-header--admin .site-header__actions {
+  @media (max-width: 1199.98px) {
+    display: flex;
+  }
+}
+
+.site-header--admin .site-header__auth {
+  @media (max-width: 1199.98px) {
+    display: none;
+  }
+}
+
+.site-header__auth {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.site-header__auth-label {
+  @media (max-width: 575.98px) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+}
+
+// Admin: open/close sidebar drawer (PortalLayout passes control below 1200px)
+.site-header__nav-toggle {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba($luxury-primary-gold, 0.35);
+  border-radius: 12px;
+  background: linear-gradient(
+    145deg,
+    rgba($luxury-primary-gold, 0.12) 0%,
+    rgba($luxury-bg-primary, 0.55) 100%
+  );
+  color: $luxury-primary-gold;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+
+  svg {
+    font-size: 1.15rem;
+  }
+
+  &:hover {
+    background: rgba($luxury-primary-gold, 0.18);
+    border-color: rgba($luxury-primary-gold, 0.5);
+    color: $theme-secondary;
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba($luxury-primary-gold, 0.55);
+    outline-offset: 2px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .site-header__row {
+    grid-template-columns: minmax(56px, auto) 1fr auto;
+    min-height: 72px;
+  }
+
+  .site-header__brand img {
+    max-height: 64px;
+    width: 64px;
+  }
+
+  .site-header__ribbon {
+    padding: 0.35rem 0;
+  }
+}

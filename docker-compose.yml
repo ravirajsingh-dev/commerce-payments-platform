@@ -1,0 +1,77 @@
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    expose:
+      - ${APP_API_PORT}
+    ports:
+      - ${APP_API_PORT}:${APP_API_PORT}
+    volumes:
+      - ./server:/rr-server
+      - /rr-server/node_modules
+    environment:
+      - APP_API_PORT
+      - BREVO_API_KEY
+      - MAIL_FROM_ADDRESS
+      - MAIL_FROM_NAME
+      - MAIL_REPLY_TO
+      - MONGO_URI
+      - R2_ACCOUNT_ID
+      - R2_ACCESS_KEY
+      - R2_SECRET_KEY
+      - R2_BUCKET
+      - R2_PUBLIC_URL
+      - JWT_ACCESS_SECRET
+      - JWT_REFRESH_SECRET
+      - JWT_ACCESS_EXPIRATION
+      - JWT_REFRESH_EXPIRATION
+      - NODE_ENV
+      - ALLOWED_ORIGINS
+    networks:
+      - app-network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    expose:
+      - ${VITE_APP_PORT}
+    ports:
+      - ${VITE_APP_PORT}:${VITE_APP_PORT}
+    volumes:
+      - /rr-client/node_modules
+      - ./client:/rr-client
+    environment:
+      - VITE_APP_PORT
+      - VITE_APP_ENV
+      - VITE_APP_APP_NAME
+      - VITE_APP_SERVER_URL
+      - VITE_APP_PORTAL_URL
+
+    networks:
+      - app-network
+
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    expose:
+      - ${VITE_APP_ADMIN_PORT}
+    ports:
+      - ${VITE_APP_ADMIN_PORT}:${VITE_APP_ADMIN_PORT}
+    volumes:
+      - /rr-admin/node_modules
+      - ./admin:/rr-admin
+    environment:
+      - VITE_APP_ADMIN_PORT
+      - VITE_APP_ENV
+      - VITE_APP_ADMIN_NAME
+      - VITE_APP_SERVER_URL
+      - VITE_APP_ADMIN_URL
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,25 @@
+api.example.com {
+    reverse_proxy commerce-server:5000 {
+        header_down Strict-Transport-Security max-age=31536000;
+    }
+}
+
+example.com, www.example.com {
+    handle /api/* {
+        reverse_proxy commerce-server:5000
+    }
+
+    reverse_proxy commerce-client:3000 {
+        header_down Strict-Transport-Security max-age=31536000;
+    }
+}
+
+admin.example.com {
+    handle /api/* {
+        reverse_proxy commerce-server:5000
+    }
+
+    reverse_proxy commerce-admin:3001 {
+        header_down Strict-Transport-Security max-age=31536000;
+    }
+}

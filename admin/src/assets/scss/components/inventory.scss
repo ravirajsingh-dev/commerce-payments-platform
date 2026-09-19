@@ -1,0 +1,237 @@
+@use "../variables" as *;
+
+.admin-inventory-page__hint {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: $theme-muted;
+}
+
+.admin-inventory-product-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+
+  span {
+    font-weight: 600;
+    word-break: break-word;
+  }
+
+  small {
+    color: $theme-muted;
+    word-break: break-word;
+  }
+}
+
+.admin-inventory-link {
+  color: $theme-primary !important;
+  text-decoration: none !important;
+  word-break: break-all;
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+.admin-inventory-stock-badge {
+  font-weight: 600;
+
+  &--out {
+    background: rgba($theme-danger, 0.2) !important;
+    color: $theme-danger !important;
+    border: 1px solid rgba($theme-danger, 0.35);
+  }
+
+  &--low {
+    background: rgba($theme-warning, 0.18) !important;
+    color: $theme-warning !important;
+    border: 1px solid rgba($theme-warning, 0.35);
+  }
+}
+
+.admin-inventory-delta-badge {
+  font-weight: 600;
+
+  &--up {
+    background: rgba($theme-success, 0.2) !important;
+    color: $theme-success !important;
+    border: 1px solid rgba($theme-success, 0.35);
+  }
+
+  &--down {
+    background: rgba($theme-danger, 0.2) !important;
+    color: $theme-danger !important;
+    border: 1px solid rgba($theme-danger, 0.35);
+  }
+}
+
+.admin-inventory-sku-search {
+  max-height: 220px;
+  overflow-y: auto;
+  border-color: $white-alpha-soft !important;
+
+  .list-group-item {
+    background: $theme-surface-alt;
+    border-color: $white-alpha-soft;
+    color: $theme-text;
+
+    &:hover,
+    &:focus {
+      background: rgba($theme-primary, 0.12);
+      color: $theme-text;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  &__sku {
+    font-weight: 600;
+    word-break: break-all;
+  }
+
+  &__stock {
+    font-size: 0.85rem;
+    color: $theme-secondary;
+    white-space: nowrap;
+  }
+
+  &__product {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: $theme-muted;
+    word-break: break-word;
+  }
+}
+
+.admin-inventory-selected-variant {
+  padding: 1rem;
+  border-radius: 0.35rem;
+  background: $theme-surface-alt;
+  border: 1px solid $white-alpha-soft;
+
+  &__sku {
+    font-weight: 600;
+    word-break: break-all;
+    color: $theme-heading;
+  }
+
+  &__product {
+    font-size: 0.9rem;
+    color: $theme-muted;
+    word-break: break-word;
+  }
+}
+
+.admin-inventory-stock-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 120px;
+    padding: 0.65rem 0.85rem;
+    border-radius: 0.35rem;
+    background: rgba($theme-primary, 0.08);
+    border: 1px solid rgba($theme-primary, 0.2);
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $theme-muted;
+  }
+
+  strong {
+    font-size: 1.05rem;
+    color: $theme-text;
+  }
+
+  &--result {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    &.is-increase {
+      background: rgba($theme-success, 0.12);
+      border-color: rgba($theme-success, 0.35);
+    }
+
+    &.is-decrease {
+      background: rgba($theme-danger, 0.1);
+      border-color: rgba($theme-danger, 0.3);
+    }
+  }
+
+  &__note {
+    width: 100%;
+    font-size: 0.85rem;
+    color: $theme-muted;
+  }
+}
+
+.admin-inventory-adjust-modal {
+  &__intro {
+    color: $theme-muted;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+  }
+
+  &__section {
+    padding: 1rem 0;
+    border-top: 1px solid $white-alpha-soft;
+
+    &:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+
+  &__section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  &__step-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $theme-secondary;
+    margin-bottom: 0.75rem;
+  }
+
+  &__empty-hint {
+    font-size: 0.9rem;
+    color: $theme-muted;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .summary-stats-cards__button {
+    width: 100%;
+  }
+
+  .admin-inventory-stock-preview__item {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+}

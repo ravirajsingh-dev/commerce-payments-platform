@@ -1,0 +1,585 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// -----------------------------------------------------------------------------
+// Site header — e-commerce style (executive gold / dark theme tokens)
+// -----------------------------------------------------------------------------
+
+.site-header {
+  --layout-header-height: 0px;
+  position: relative;
+  z-index: 1050;
+}
+
+.site-header--offset {
+  padding-top: var(--layout-header-height);
+}
+
+// Top trust / social ribbon
+.site-header__ribbon {
+  background: linear-gradient(
+    90deg,
+    $bg-alpha-strong 0%,
+    rgba($theme-bg, 0.75) 50%,
+    $bg-alpha-strong 100%
+  );
+  border-bottom: 1px solid $theme-border-muted;
+  padding: 0.45rem 0;
+}
+
+.site-header__shell {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(0.75rem, 3vw, 1.5rem);
+  padding-right: clamp(0.75rem, 3vw, 1.5rem);
+}
+
+.site-header__ribbon .site-header__shell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Main bar (sticky target; mega panel anchors to bottom edge)
+.site-header__bar {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba($theme-bg, 0.92) 0%,
+    $black-alpha-deep 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid $theme-alpha-strong;
+  box-shadow: 0 1px 0 $theme-alpha-faint inset;
+}
+
+.site-header__bar--sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  box-shadow:
+    0 8px 32px $black-alpha-mid,
+    0 1px 0 $theme-alpha-faint inset;
+  @include transition(0.35s);
+}
+
+.site-header__row {
+  display: grid;
+  grid-template-columns: minmax(56px, auto) 1fr auto;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  min-height: 64px;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.site-header--mega-open .site-header__bar {
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+// Logo
+.site-header__brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 72px;
+  min-height: 72px;
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 0 0 1px $theme-alpha-mid;
+  }
+
+  img {
+    display: block;
+    height: auto;
+    max-height: 56px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+    border-radius: 0;
+  }
+
+  .logo-spinner {
+    min-height: 72px;
+    min-width: 72px;
+  }
+}
+
+// Navigation: drawer + hamburger below 1200px; full nav at min-width 1200px (aligns with sidebar drawer).
+.site-header__nav {
+  justify-self: center;
+  max-width: 100%;
+  display: none;
+
+  @media (min-width: 1200px) {
+    display: block;
+  }
+}
+
+.site-header__menu {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header__menu > li {
+  position: relative;
+}
+
+.site-header__menu > li > a,
+.site-header__menu > li > .site-header__link,
+.site-header__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.85rem;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: $theme-secondary;
+  text-decoration: none;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &::before {
+    display: none;
+  }
+
+  &:hover {
+    color: $white;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &.active {
+    color: $theme-primary;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  @media (min-width: 1400px) {
+    padding: 0.5rem 1rem;
+    letter-spacing: 0.15em;
+  }
+}
+
+.site-header__item--mega.site-header__item--open .site-header__trigger--mega,
+.site-header__item--mega:hover .site-header__trigger--mega {
+  color: $white;
+}
+
+.site-header__chevron {
+  font-size: 0.5rem;
+  opacity: 0.9;
+  margin-top: 1px;
+}
+
+.site-header__item--open .site-header__dropdown,
+.site-header__menu > li:hover .site-header__dropdown {
+  visibility: visible;
+  opacity: 1;
+  top: 100%;
+  transform: translateY(0);
+}
+
+.site-header__dropdown {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 6px);
+  transform: translate(-50%, -4px);
+  min-width: 280px;
+  width: max-content;
+  max-width: min(340px, 92vw);
+  margin: 0;
+  padding: 0.65rem 0;
+  list-style: none;
+  z-index: 1100;
+  background: linear-gradient(
+    165deg,
+    $surface-alpha-deep 0%,
+    rgba($theme-bg, 0.98) 100%
+  );
+  border: 1px solid $theme-alpha-strong;
+  border-radius: 0 0 12px 12px;
+  border-top: 3px solid $theme-primary;
+  box-shadow:
+    0 16px 40px $black-alpha-mid,
+    0 0 0 1px $theme-alpha-faint inset;
+  transition:
+    opacity 0.22s ease,
+    visibility 0.22s ease,
+    transform 0.22s ease;
+}
+
+.site-header__dropdown li {
+  margin: 0;
+}
+
+.site-header__dropdown-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1.15rem;
+  margin: 0;
+  color: $theme-text;
+  text-decoration: none;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
+
+  &::before {
+    display: none;
+  }
+
+  &:hover,
+  &.active {
+    background: $theme-alpha-soft;
+    color: $theme-primary;
+  }
+
+  &.active {
+    font-weight: 600;
+  }
+}
+
+.site-header__dropdown-link--media .site-header__dropdown-icon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+}
+
+.site-header__dropdown-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.site-header__dropdown-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+.site-header__dropdown-desc {
+  font-size: 1rem;
+  color: $theme-muted;
+  line-height: 1.35;
+}
+
+// Actions column
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+// `/search` page — avoids crowding nav + Register/Login.
+.site-header__search-icon.site-header__search-icon.btn {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 0.94rem;
+    height: 0.94rem;
+  }
+}
+
+// Shopping cart — same visibility as search (btn--icon hides at 1200px+ without this).
+.site-header__cart-link.site-header__cart-link.btn {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  svg {
+    width: 0.94rem;
+    height: 0.94rem;
+  }
+}
+
+.site-header__cart-badge {
+  position: absolute;
+  top: 0.15rem;
+  right: 0.1rem;
+  min-width: 1.125rem;
+  height: 1.125rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  color: $theme-text-on-primary;
+  background: $theme-primary;
+  border: 2px solid rgba($theme-bg, 0.95);
+  pointer-events: none;
+}
+
+.site-header__wishlist-link.site-header__wishlist-link.btn {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  svg {
+    width: 0.94rem;
+    height: 0.94rem;
+  }
+}
+
+.site-header__wishlist-badge {
+  position: absolute;
+  top: 0.15rem;
+  right: 0.1rem;
+  min-width: 1.125rem;
+  height: 1.125rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  color: $theme-text-on-primary;
+  background: $theme-secondary;
+  border: 2px solid rgba($theme-bg, 0.95);
+  pointer-events: none;
+}
+
+// Single account control: icon-only below 1200px, icon + label at 1200px+ (no duplicate links).
+.site-header__account-btn.site-header__account-btn.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 0.4rem;
+  white-space: nowrap;
+
+  svg {
+    width: 0.94rem;
+    height: 0.94rem;
+  }
+
+  @media (max-width: 1199.98px) {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    padding: 0;
+
+    .site-header__account-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  }
+
+  &.active {
+    color: $theme-primary;
+    border-color: rgba($theme-primary, 0.55);
+    box-shadow: 0 0 0 1px rgba($theme-primary, 0.2);
+  }
+}
+
+.site-header__auth {
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  @media (min-width: 1200px) {
+    display: flex;
+  }
+}
+
+.site-header__auth-label {
+  @media (max-width: 575.98px) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+}
+
+// Shop mega-menu — bordered panel (RRJ-style)
+.site-header__mega-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 1090;
+  display: flex;
+  justify-content: center;
+  padding: 0 clamp(1rem, 4vw, 2.5rem);
+  pointer-events: none;
+}
+
+.site-header__mega-wrap > .site-header__mega {
+  pointer-events: auto;
+}
+
+.site-header__mega {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  background: rgba($theme-bg, 0.98);
+  border: 1px solid rgba($theme-primary, 0.55);
+  box-shadow: 0 12px 36px $black-alpha-mid;
+}
+
+.site-header__mega--loading,
+.site-header__mega--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  padding: 2.5rem 2rem;
+}
+
+.site-header__mega-empty {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  color: $theme-muted;
+  text-align: center;
+}
+
+.site-header__mega-inner {
+  display: grid;
+  grid-template-columns: repeat(var(--mega-cols, 3), minmax(0, 1fr));
+  gap: 0 4rem;
+  padding: 2.5rem 3rem 2.75rem;
+  text-align: left;
+
+  @media (max-width: 991.98px) {
+    gap: 0 2rem;
+    padding: 2rem 1.75rem 2.25rem;
+  }
+}
+
+.site-header__mega-col {
+  min-width: 0;
+  padding-right: 0.5rem;
+
+  &:not(:last-child) {
+    border-right: 1px solid rgba($theme-primary, 0.12);
+
+    @media (max-width: 767.98px) {
+      border-right: none;
+    }
+  }
+}
+
+.site-header__mega-section + .site-header__mega-section {
+  margin-top: 2.25rem;
+}
+
+.site-header__mega-heading {
+  margin: 0 0 0.8rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: $theme-primary;
+}
+
+.site-header__mega-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header__mega-list li + li {
+  margin-top: 0.35rem;
+}
+
+.site-header__mega-link {
+  display: inline-block;
+  padding: 0.14rem 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.55;
+  text-transform: none;
+  color: $theme-secondary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: $white;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .site-header__row {
+    grid-template-columns: minmax(56px, auto) 1fr auto;
+    min-height: 64px;
+  }
+
+  .site-header__brand img {
+    max-height: 64px;
+    width: 64px;
+  }
+
+  .site-header__ribbon {
+    padding: 0.35rem 0;
+  }
+}

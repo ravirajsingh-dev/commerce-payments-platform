@@ -1,0 +1,306 @@
+@use "../variables" as *;
+
+.sales-dashboard {
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__header-text {
+    flex: 1 1 220px;
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.35rem, 4vw, 1.65rem);
+    font-weight: 700;
+    color: $theme-heading;
+    letter-spacing: 0.02em;
+  }
+
+  &__hint {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: rgba($theme-text-on-surface, 0.72);
+    max-width: 42rem;
+  }
+
+  &__header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__spin {
+    animation: sales-dashboard-spin 0.8s linear infinite;
+  }
+
+  &__metrics {
+    margin-bottom: 1.25rem;
+  }
+
+  &__hero {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+
+    @media (max-width: 575.98px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__hero-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.1rem;
+    border-radius: 12px;
+    border: 1px solid rgba($luxury-primary-gold, 0.22);
+    background: linear-gradient(
+      145deg,
+      rgba($theme-surface, 0.72) 0%,
+      rgba($theme-bg, 0.92) 100%
+    );
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+
+    &--gmv {
+      border-color: rgba($theme-success, 0.3);
+    }
+
+    &--aov {
+      border-color: rgba($theme-primary, 0.32);
+    }
+  }
+
+  &__hero-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    flex-shrink: 0;
+    color: $theme-heading;
+    background: rgba($luxury-primary-gold, 0.14);
+  }
+
+  &__hero-card--gmv &__hero-icon {
+    color: $theme-success;
+    background: rgba($theme-success, 0.15);
+  }
+
+  &__hero-card--aov &__hero-icon {
+    color: $theme-primary;
+    background: rgba($theme-primary, 0.14);
+  }
+
+  &__hero-label {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba($theme-text-on-surface, 0.65);
+    margin-bottom: 0.2rem;
+  }
+
+  &__hero-value {
+    display: block;
+    font-size: clamp(1.2rem, 3.5vw, 1.45rem);
+    line-height: 1.2;
+    color: $theme-heading;
+  }
+
+  &__summary {
+    margin-bottom: 0;
+  }
+
+  &__status-section {
+    margin-bottom: 1.35rem;
+  }
+
+  &__section-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $theme-heading;
+    letter-spacing: 0.02em;
+
+    svg {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      color: $theme-primary;
+    }
+  }
+
+  &__status-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.65rem;
+
+    @media (max-width: 991.98px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 575.98px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__status-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.8rem 0.85rem;
+    border-radius: 10px;
+    border: 1px solid rgba($luxury-primary-gold, 0.16);
+    background: linear-gradient(
+      180deg,
+      rgba($theme-bg, 0.55) 0%,
+      rgba($theme-surface, 0.85) 100%
+    );
+  }
+
+  &__status-badge {
+    display: inline-block;
+    padding: 0.18rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  &__status-value {
+    font-size: 1.25rem;
+    line-height: 1.1;
+    color: $theme-heading;
+  }
+
+  &__status-pct {
+    font-size: 0.76rem;
+    color: rgba($theme-text-on-surface, 0.58);
+  }
+
+  &__tables-row {
+    margin-bottom: 1rem;
+  }
+
+  &__table-block {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+
+    &--full {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__updated {
+    margin: 0.75rem 0 0;
+    font-size: 0.8rem;
+    text-align: right;
+  }
+}
+
+.sales-dashboard-filters {
+  .entity-form__select {
+    min-width: 0;
+  }
+}
+
+.sales-dashboard-table-card {
+  flex: 1;
+  min-height: 0;
+}
+
+.sales-dashboard-table {
+  .rdt_TableCol:nth-child(2),
+  .rdt_TableCol:nth-child(3),
+  .rdt_TableCell:nth-child(2),
+  .rdt_TableCell:nth-child(3) {
+    white-space: normal !important;
+    align-items: flex-start !important;
+    overflow: visible !important;
+  }
+
+  &__cell-wrap {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal !important;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    line-height: 1.4;
+    padding-right: 0.35rem;
+  }
+
+  &__rank {
+    font-weight: 700;
+    color: rgba($theme-primary, 0.9);
+  }
+
+  &__customer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  &__link {
+    color: $theme-primary;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      color: $luxury-gold-highlight;
+      text-decoration: underline;
+    }
+  }
+
+  &__sub {
+    font-size: 0.8rem;
+    color: rgba($theme-text-on-surface, 0.62);
+    word-break: break-word;
+  }
+
+  &__sku {
+    font-size: 0.86rem;
+    word-break: break-all;
+  }
+
+  &__link.sales-dashboard-table__cell-wrap {
+    display: block;
+  }
+
+  &__money {
+    font-weight: 600;
+    color: $theme-heading;
+    white-space: nowrap;
+  }
+}
+
+@keyframes sales-dashboard-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

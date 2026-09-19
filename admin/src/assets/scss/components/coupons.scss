@@ -1,0 +1,53 @@
+@use "../variables" as *;
+
+.coupon-form {
+  &__hint {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: $theme-text-muted-light !important;
+  }
+}
+
+.coupon-table {
+  .rdt_TableCol:nth-child(1),
+  .rdt_TableCell:nth-child(1) {
+    min-width: 150px !important;
+    flex: 0 0 150px !important;
+  }
+
+  .rdt_TableCol:last-child,
+  .rdt_TableCell:last-child {
+    min-width: 300px !important;
+    flex: 0 0 300px !important;
+  }
+
+  &__code {
+    display: block;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: $theme-primary;
+    white-space: nowrap;
+  }
+
+  &__title {
+    display: block;
+    color: $theme-text;
+    line-height: 1.35;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__discount {
+    font-weight: 600;
+    color: $theme-secondary;
+  }
+
+  &__meta {
+    font-size: 0.82rem;
+    color: $theme-text-muted-light;
+  }
+}

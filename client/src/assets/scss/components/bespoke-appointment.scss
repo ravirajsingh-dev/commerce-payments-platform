@@ -1,0 +1,60 @@
+@use "../variables" as *;
+
+.bespoke-appointment-page {
+  color: $theme-text-on-surface;
+  padding-bottom: 3rem;
+}
+
+.bespoke-appointment-section {
+  padding: 0 0 2rem;
+}
+
+.bespoke-appointment-intro {
+  max-width: 52rem;
+  margin: 0 auto 2.5rem;
+}
+
+.bespoke-appointment-intro-line {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-style: italic;
+  color: rgba($theme-text, 0.92);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.bespoke-appointment-description {
+  color: $theme-text-muted-lighter;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.bespoke-appointment-form-wrap {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.bespoke-appointment-form-heading {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  color: $theme-heading;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.bespoke-appointment-form {
+  .bespoke-appointment-submit {
+    min-width: 12rem;
+    margin-top: 0.5rem;
+  }
+}
+
+.bespoke-appointment-back a {
+  color: $theme-primary;
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    color: $theme-secondary;
+    text-decoration: underline;
+  }
+}

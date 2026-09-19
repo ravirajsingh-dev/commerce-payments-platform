@@ -1,0 +1,99 @@
+services:
+  server:
+    image: ${CONTAINER_REGISTRY}server:${VERSION}
+    container_name: commerce-server
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "1G"
+        reservations:
+          cpus: "0.5"
+          memory: "0.5G"
+    build:
+      context: ./
+      dockerfile: ./server/Dockerfile.prod
+    expose:
+      - ${APP_API_PORT}
+    environment:
+      - APP_API_PORT
+      - BREVO_API_KEY
+      - MAIL_FROM_ADDRESS
+      - MAIL_FROM_NAME
+      - MAIL_REPLY_TO
+      - MONGO_URI
+      - R2_ACCOUNT_ID
+      - R2_ACCESS_KEY
+      - R2_SECRET_KEY
+      - R2_BUCKET
+      - R2_PUBLIC_URL
+      - JWT_ACCESS_SECRET
+      - JWT_REFRESH_SECRET
+      - JWT_ACCESS_EXPIRATION
+      - JWT_REFRESH_EXPIRATION
+      - NODE_ENV
+      - ALLOWED_ORIGINS
+
+  client:
+    image: ${CONTAINER_REGISTRY}client:${VERSION}
+    container_name: commerce-client
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "0.4G"
+        reservations:
+          cpus: "0.12"
+          memory: "0.2G"
+    build:
+      context: ./
+      dockerfile: ./client/Dockerfile.prod
+      args:
+        - VERSION
+        - VITE_APP_PORT
+        - VITE_APP_ENV
+        - VITE_APP_APP_NAME
+        - VITE_APP_SERVER_URL
+        - VITE_APP_PORTAL_URL
+    environment:
+      - VITE_APP_PORT
+      - VITE_APP_ENV
+      - VITE_APP_APP_NAME
+      - VITE_APP_SERVER_URL
+      - VITE_APP_PORTAL_URL
+
+  admin:
+    image: ${CONTAINER_REGISTRY}admin:${VERSION}
+    container_name: commerce-admin
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "0.4G"
+        reservations:
+          cpus: "0.12"
+          memory: "0.2G"
+    build:
+      context: ./
+      dockerfile: ./admin/Dockerfile.prod
+      args:
+        - VERSION
+        - VITE_APP_ADMIN_PORT
+        - VITE_APP_ENV
+        - VITE_APP_ADMIN_NAME
+        - VITE_APP_SERVER_URL
+        - VITE_APP_ADMIN_URL
+    environment:
+      - VITE_APP_ADMIN_PORT
+      - VITE_APP_ENV
+      - VITE_APP_ADMIN_NAME
+      - VITE_APP_SERVER_URL
+      - VITE_APP_ADMIN_URL
+
+networks:
+  default:
+    external: true
+    name: shared-net

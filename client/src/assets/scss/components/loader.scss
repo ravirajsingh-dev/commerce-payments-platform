@@ -1,0 +1,134 @@
+@use "../variables" as *;
+
+/* E-commerce themed bouncing loader */
+.bouncing-loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  width: 100%;
+  padding: 1.5rem 1rem;
+}
+
+.bouncing-loader-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 1rem 1.35rem;
+}
+
+.bouncing-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.42rem;
+
+  > div {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff 0%, $theme-primary 70%);
+    box-shadow: 0 4px 10px rgba($theme-primary, 0.35);
+    animation: bouncing-loader-bounce 0.65s cubic-bezier(0.4, 0, 0.2, 1)
+      infinite alternate;
+    will-change: transform, opacity;
+  }
+
+  > div:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  > div:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+}
+
+.bouncing-loader-message {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba($theme-primary, 0.92);
+  text-align: center;
+  max-width: 300px;
+  animation: bouncing-loader-fade 1.2s ease-in-out infinite;
+}
+
+@keyframes bouncing-loader-bounce {
+  from {
+    transform: translateY(0);
+    opacity: 0.92;
+  }
+  to {
+    transform: translateY(-10px) scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes bouncing-loader-fade {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Common spinner */
+.common-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+
+  &--sm .common-spinner__ring {
+    width: 22px;
+    height: 22px;
+    border-width: 2px;
+  }
+
+  &--md .common-spinner__ring {
+    width: 30px;
+    height: 30px;
+    border-width: 2.5px;
+  }
+
+  &--lg .common-spinner__ring {
+    width: 38px;
+    height: 38px;
+    border-width: 3px;
+  }
+}
+
+.common-spinner__ring {
+  display: inline-block;
+  border-style: solid;
+  border-color: rgba($theme-alpha-mid, 0.55);
+  border-top-color: $theme-primary;
+  border-right-color: rgba($theme-primary, 0.7);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 8px rgba($theme-primary, 0.35));
+  animation: common-spinner-rotate 0.9s linear infinite;
+}
+
+.common-spinner__message {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba($theme-primary, 0.88);
+  line-height: 1.2;
+  text-align: center;
+}
+
+@keyframes common-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

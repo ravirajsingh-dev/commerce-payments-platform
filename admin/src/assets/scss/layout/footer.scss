@@ -1,0 +1,27 @@
+@use "../variables" as *;
+
+.store-footer-legal-bar {
+  background: $black-alpha-mid;
+  border-top: 1px solid $theme-alpha-mid;
+  padding: 0 1rem 1.25rem;
+}
+
+.store-footer-section-rule {
+  border: none;
+  height: 1px;
+  background: $theme-primary;
+  opacity: 0.55;
+  margin: 0 0 1rem;
+}
+
+.store-footer-copyright {
+  color: $theme-primary;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-align: center;
+}
+
+.store-footer-copyright-brand {
+  font-weight: 700;
+}

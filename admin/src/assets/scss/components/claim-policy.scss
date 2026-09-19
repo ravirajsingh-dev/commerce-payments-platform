@@ -1,0 +1,91 @@
+@use "../variables" as *;
+
+.claim-policy-form {
+  &__hint {
+    display: block;
+    margin-top: 0.35rem;
+    margin-bottom: 0;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: $theme-text-muted-light !important;
+  }
+
+  &__section-title {
+    margin-bottom: 0.35rem;
+    color: $theme-heading;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+  }
+
+  &__checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.25rem;
+
+    .custom-checkbox {
+      flex: 1 1 100%;
+      max-width: 100%;
+
+      @media (min-width: 576px) {
+        flex: 1 1 calc(50% - 0.75rem);
+        max-width: calc(50% - 0.75rem);
+      }
+
+      @media (min-width: 992px) {
+        flex: 0 1 auto;
+        max-width: none;
+      }
+    }
+  }
+}
+
+.claim-policy-matrix {
+  margin-top: 0.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba($theme-primary, 0.4);
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba($theme-primary, 0.08) 0%,
+    rgba($theme-bg, 0.65) 100%
+  );
+  box-shadow:
+    inset 0 0 0 1px rgba($theme-primary, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.18);
+
+  &__panel {
+    margin-top: 0.75rem;
+    padding: 0.9rem 1rem;
+    border: 1px dashed rgba($theme-primary, 0.28);
+    border-radius: 10px;
+    background: rgba($theme-bg, 0.45);
+  }
+
+  .entity-form__select {
+    .custom-select__menu {
+      z-index: 1060;
+    }
+  }
+}
+
+.claim-policy-form-actions {
+  .btn {
+    width: 100%;
+
+    @media (min-width: 576px) {
+      width: auto;
+    }
+  }
+}
+
+.claim-policy-empty-hint {
+  padding: 0.85rem 1rem;
+  border: 1px dashed rgba($theme-primary, 0.28);
+  border-radius: 10px;
+  background: rgba($theme-bg, 0.35);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: $theme-text-muted-light !important;
+}

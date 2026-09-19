@@ -1,0 +1,518 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// -----------------------------------------------------------------------------
+// Mobile / tablet drawer — e-commerce, executive gold + dark theme
+// -----------------------------------------------------------------------------
+
+$drawer-width: min(92vw, 420px);
+$drawer-serif: Georgia, "Times New Roman", Times, serif;
+
+.site-drawer__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1055;
+  background: rgba($black, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  @include transition(0.28s);
+
+  &--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  @media (min-width: 1200px) {
+    display: none;
+  }
+}
+
+.site-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1060;
+  display: flex;
+  flex-direction: column;
+  width: $drawer-width;
+  max-width: 100%;
+  height: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    180deg,
+    $surface-alpha-deep 0%,
+    rgba($theme-bg, 0.98) 48%,
+    $theme-bg 100%
+  );
+  border-left: 1px solid $theme-alpha-strong;
+  box-shadow:
+    -12px 0 40px $black-alpha-mid,
+    -1px 0 0 $theme-alpha-faint inset;
+  transform: translateX(100%);
+  visibility: hidden;
+  @include transition(0.32s);
+
+  &--open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  @media (min-width: 1200px) {
+    display: none;
+  }
+}
+
+.site-drawer__head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid $theme-border-muted;
+  background: rgba($theme-bg, 0.65);
+}
+
+.site-drawer__title {
+  font-family: $drawer-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $theme-secondary;
+}
+
+.site-drawer__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid $theme-alpha-strong;
+  border-radius: 10px;
+  background: $theme-alpha-faint;
+  color: $theme-primary;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+
+  svg {
+    font-size: 1.15rem;
+  }
+
+  &:hover {
+    background: $theme-alpha-soft;
+    color: $theme-secondary;
+    border-color: $theme-alpha-mid;
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.site-drawer__body {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.35rem 0 1rem;
+}
+
+.site-drawer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-drawer__item {
+  border-bottom: 1px solid rgba($theme-border-muted, 0.6);
+
+  &--branch {
+    padding: 0;
+  }
+
+  &--active > .site-drawer__link,
+  &--active > .site-drawer__parent {
+    color: $theme-secondary;
+    background: $theme-alpha-soft;
+    box-shadow: inset 3px 0 0 $theme-primary;
+  }
+
+  &--child-active > .site-drawer__parent {
+    color: $theme-primary;
+    background: $theme-alpha-faint;
+  }
+
+  &--open > .site-drawer__parent::after {
+    transform: translateY(-50%) rotate(-135deg);
+  }
+
+  &--open > .site-drawer__sub {
+    max-height: 1200px;
+    opacity: 1;
+    padding-top: 0.35rem;
+    padding-bottom: 0.65rem;
+  }
+
+  &--open > .site-drawer__shop-tree {
+    display: block;
+  }
+}
+
+.site-drawer__link {
+  display: block;
+  padding: 1.05rem 1.35rem;
+  font-family: $drawer-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: $theme-secondary;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    background: $theme-alpha-faint;
+    color: $white;
+    box-shadow: inset 3px 0 0 $theme-primary;
+  }
+}
+
+.site-drawer__parent {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.05rem 2.75rem 1.05rem 1.35rem;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font-family: $drawer-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: $theme-secondary;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 1.35rem;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-width: 2px 0 0 2px;
+    border-style: solid;
+    border-color: $theme-primary;
+    transform: translateY(-50%) rotate(-45deg);
+    transition: transform 0.28s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: $theme-alpha-faint;
+    color: $white;
+    box-shadow: inset 3px 0 0 $theme-primary;
+  }
+}
+
+.site-drawer__parent-label {
+  pointer-events: none;
+}
+
+.site-drawer__sub {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin: 0;
+  padding: 0 0 0 0.25rem;
+  list-style: none;
+  transition:
+    max-height 0.45s ease,
+    opacity 0.35s ease;
+}
+
+.site-drawer__sub-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.65rem 1rem 0.65rem 1.35rem;
+  margin: 0 0.5rem 0.25rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: $theme-text;
+  text-decoration: none;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
+
+  &:hover {
+    background: $theme-alpha-soft;
+    color: $theme-primary;
+  }
+
+  &--active {
+    background: $theme-alpha-soft;
+    color: $theme-primary;
+    font-weight: 600;
+  }
+}
+
+.site-drawer__sub-link--media .site-drawer__sub-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  margin-top: 0.1rem;
+  font-size: 1.15rem;
+}
+
+.site-drawer__sub-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.site-drawer__sub-label {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.site-drawer__sub-desc {
+  font-size: 0.72rem;
+  color: $theme-muted;
+  line-height: 1.35;
+}
+
+.site-drawer__foot {
+  flex-shrink: 0;
+  padding: 1rem 1.15rem calc(1rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid $theme-border-muted;
+  background: linear-gradient(
+    180deg,
+    rgba($theme-bg, 0.5) 0%,
+    $theme-hover 100%
+  );
+}
+
+.site-drawer__foot-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+
+  &--auth {
+    grid-template-columns: auto auto auto 1fr;
+  }
+}
+
+.site-drawer__wishlist-btn {
+  position: relative;
+  min-width: 44px;
+}
+
+.site-drawer__wishlist-badge {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.35rem;
+  min-width: 1.125rem;
+  height: 1.125rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  color: $theme-text-on-primary;
+  background: $theme-secondary;
+  border: 2px solid rgba($theme-bg, 0.95);
+  pointer-events: none;
+}
+
+.site-drawer__cart-btn {
+  position: relative;
+  min-width: 44px;
+}
+
+.site-drawer__cart-badge {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.35rem;
+  min-width: 1.125rem;
+  height: 1.125rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  color: $theme-text-on-primary;
+  background: $theme-primary;
+  border: 2px solid rgba($theme-bg, 0.95);
+  pointer-events: none;
+}
+
+.site-drawer__foot-btn {
+  width: 100%;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding-top: 0.65rem !important;
+  padding-bottom: 0.65rem !important;
+  font-weight: 600 !important;
+}
+
+.site-drawer__foot-row .site-drawer__foot-btn {
+  width: auto;
+}
+
+// Shop — nested multi-dropdown (section → products)
+.site-drawer__shop-tree {
+  display: none;
+  margin: 0;
+  padding: 0.25rem 0 0.85rem;
+  border-left: 2px solid rgba($theme-primary, 0.45);
+  margin-left: 1.35rem;
+
+  &--loading,
+  &--empty {
+    display: block;
+    padding: 1rem 1.25rem 1rem 1.5rem;
+    font-family: $drawer-serif;
+    font-size: 0.9rem;
+    color: $theme-muted;
+  }
+}
+
+.site-drawer__shop-sections {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-drawer__shop-section {
+  border-bottom: 1px solid rgba($theme-border-muted, 0.35);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &--open > .site-drawer__shop-section-trigger::after {
+    transform: translateY(-50%) rotate(-135deg);
+  }
+
+  &--open > .site-drawer__shop-products {
+    max-height: 800px;
+    opacity: 1;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.site-drawer__shop-section-trigger {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 2.25rem 0.85rem 1.15rem;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font-family: $drawer-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  text-align: left;
+  text-transform: uppercase;
+  color: $theme-primary;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-width: 2px 0 0 2px;
+    border-style: solid;
+    border-color: $theme-primary;
+    transform: translateY(-50%) rotate(-45deg);
+    transition: transform 0.28s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $white;
+  }
+}
+
+.site-drawer__shop-section-label {
+  pointer-events: none;
+}
+
+.site-drawer__shop-products {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease;
+}
+
+.site-drawer__shop-product-link {
+  display: block;
+  padding: 0.55rem 1rem 0.55rem 1.65rem;
+  font-family: $drawer-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: $white;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: $white;
+    opacity: 0.85;
+  }
+
+  &--active {
+    color: $theme-primary;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-drawer__foot-row {
+    grid-template-columns: 1fr;
+  }
+}

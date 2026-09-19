@@ -1,0 +1,159 @@
+@use "sass:map";
+
+// ============================================
+// FONT FAMILY
+// ============================================
+$futurabook: "glida";
+$futura-medium: "glida";
+$cerebri-regular: "glida";
+$cerebri-semi: "glida";
+$cerebri-bold: "glida";
+
+// ============================================
+// BASE TOKENS
+// ============================================
+$white: #ffffff;
+$black: #000000;
+
+// Status colors (semantic map)
+$success-green: #27ae60;
+$warning-orange: #e67e22;
+
+// ============================================
+// ACTIVE THEME — EXECUTIVE (luxury dark + gold)
+// ============================================
+$luxury-bg-primary: #010617;
+$luxury-bg-secondary: #000000;
+$luxury-surface-card: #1d160c;
+$luxury-surface-highlight: #8b6a37;
+$luxury-primary-gold: #c29e66;
+$luxury-gold-highlight: #d1b58a;
+$luxury-text-main: #f4f4f4;
+$luxury-text-muted: #bdbdbd;
+$luxury-border: rgba(139, 106, 55, 0.35);
+
+$executive-bg: $luxury-bg-primary;
+$executive-surface: $luxury-surface-card;
+$executive-surface-alt: $luxury-bg-secondary;
+$executive-surface-light: $luxury-surface-highlight;
+$executive-text: $luxury-text-main;
+$executive-heading: $luxury-primary-gold;
+$executive-primary: $luxury-primary-gold;
+$executive-secondary: $luxury-gold-highlight;
+$executive-border: $luxury-border;
+$executive-border-muted: $luxury-border;
+$executive-muted: $luxury-text-muted;
+$executive-hover: rgba(194, 158, 102, 0.15);
+$executive-disabled: #afafaf;
+$executive-text-on-primary: $luxury-bg-primary;
+$executive-text-on-surface: $luxury-text-main;
+$executive-text-muted-light: $luxury-text-muted;
+$executive-text-muted-lighter: $luxury-text-muted;
+$executive-bg-light: $luxury-surface-card;
+$executive-bg-very-light: $luxury-surface-highlight;
+$executive-danger: #ef4444;
+$executive-danger-hover: #dc2626;
+
+$theme-executive: (
+  bg: $executive-bg,
+  surface: $executive-surface,
+  surface-alt: $executive-surface-alt,
+  surface-light: $executive-surface-light,
+  text: $executive-text,
+  heading: $executive-heading,
+  primary: $executive-primary,
+  secondary: $executive-secondary,
+  border: $executive-border,
+  border-muted: $executive-border-muted,
+  muted: $executive-muted,
+  hover: $executive-hover,
+  disabled: $executive-disabled,
+  text-on-primary: $executive-text-on-primary,
+  text-on-surface: $executive-text-on-surface,
+  text-muted-light: $executive-text-muted-light,
+  text-muted-lighter: $executive-text-muted-lighter,
+  bg-light: $executive-bg-light,
+  bg-very-light: $executive-bg-very-light,
+  danger: $executive-danger,
+  danger-hover: $executive-danger-hover,
+  success: $success-green,
+  warning: $warning-orange,
+);
+
+$active-theme: $theme-executive;
+
+// ============================================
+// SEMANTIC THEME VARIABLES
+// ============================================
+$theme-bg: map.get($active-theme, bg);
+$theme-surface: map.get($active-theme, surface);
+$theme-surface-alt: map.get($active-theme, surface-alt);
+$theme-surface-light: map.get($active-theme, surface-light);
+
+$theme-text: map.get($active-theme, text);
+$theme-heading: map.get($active-theme, heading);
+
+$theme-primary: map.get($active-theme, primary);
+$theme-secondary: map.get($active-theme, secondary);
+
+$theme-border: map.get($active-theme, border);
+$theme-border-muted: map.get($active-theme, border-muted);
+
+$theme-muted: map.get($active-theme, muted);
+$theme-hover: map.get($active-theme, hover);
+$theme-disabled: map.get($active-theme, disabled);
+
+$theme-text-on-primary: map.get($active-theme, text-on-primary);
+$theme-text-on-surface: map.get($active-theme, text-on-surface);
+
+$theme-text-muted-light: map.get($active-theme, text-muted-light);
+$theme-text-muted-lighter: map.get($active-theme, text-muted-lighter);
+
+$theme-bg-light: map.get($active-theme, bg-light);
+$theme-bg-very-light: map.get($active-theme, bg-very-light);
+
+$theme-danger: map.get($active-theme, danger);
+$theme-danger-hover: map.get($active-theme, danger-hover);
+
+$theme-success: map.get($active-theme, success);
+$theme-warning: map.get($active-theme, warning);
+
+// ============================================
+// DERIVED COLOR TOKENS (NO HARD-CODED COLORS)
+// ============================================
+$theme-alpha-faint: rgba($theme-primary, 0.08);
+$theme-alpha-soft: rgba($theme-primary, 0.15);
+$theme-alpha-mid: rgba($theme-primary, 0.25);
+$theme-alpha-strong: rgba($theme-primary, 0.45);
+
+$black-alpha-soft: rgba($black, 0.1);
+$black-alpha-mid: rgba($black, 0.35);
+$black-alpha-deep: rgba($black, 0.95);
+
+$surface-alpha-soft: rgba($theme-surface, 0.45);
+$surface-alpha-strong: rgba($theme-surface, 0.86);
+$surface-alpha-deep: rgba($theme-surface, 0.96);
+$bg-alpha-strong: rgba($theme-bg, 0.9);
+
+$white-alpha-soft: rgba($white, 0.08);
+$state-success-soft: rgba($theme-success, 0.2);
+$state-danger-soft: rgba($theme-danger, 0.18);
+$state-danger-strong: rgba($theme-danger, 0.5);
+$state-warning-soft: rgba($theme-warning, 0.2);
+
+$theme-primary-transparent: rgba($theme-primary, 0);
+$theme-text-on-surface-transparent: rgba($theme-text-on-surface, 0);
+
+// Layout background tokens
+$layout-bg-orb-glow: rgba($theme-primary, 0.15);
+$layout-bg-gradient-start: $theme-bg;
+$layout-bg-gradient-end: $theme-surface-alt;
+
+// ============================================
+// RESPONSIVE VARIABLES
+// ============================================
+$laptop: "only screen and (min-width: 1200px) and (max-width: 1600px)";
+$lg: "only screen and (min-width: 992px) and (max-width: 1200px)";
+$md: "only screen and (min-width: 768px) and (max-width: 991px)";
+$xs: "(max-width: 767px)";
+$sm: "only screen and (min-width: 576px) and (max-width: 767px)";

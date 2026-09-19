@@ -1,0 +1,1092 @@
+@use "./variables" as *;
+
+input:not([type="checkbox"]):not([type="radio"]),
+textarea {
+  background-color: $theme-surface-light;
+  border: 1px solid $white-alpha-soft;
+  color: $theme-text;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &::placeholder {
+    color: $theme-muted;
+  }
+
+  &:focus {
+    border-color: $theme-primary;
+    box-shadow: 0 0 0 0.2rem $theme-alpha-mid;
+    outline: 0;
+  }
+
+  &:disabled {
+    background-color: $theme-surface-alt;
+    color: $theme-muted;
+  }
+}
+
+// Bootstrap form controls sometimes force textarea white background.
+// Keep all textareas/theme inputs aligned with the dark-gold admin theme.
+.form-control,
+textarea.form-control,
+input.form-control {
+  background-color: $theme-surface-light !important;
+  color: $theme-text !important;
+  border-color: $white-alpha-soft !important;
+
+  &::placeholder {
+    color: $theme-muted !important;
+  }
+
+  &:focus {
+    background-color: $theme-surface-light !important;
+    color: $theme-text !important;
+    border-color: $theme-primary !important;
+    box-shadow: 0 0 0 0.2rem $theme-alpha-mid !important;
+  }
+
+  &:disabled {
+    background-color: $theme-surface-alt !important;
+    color: $theme-muted !important;
+  }
+}
+
+label {
+  color: $theme-heading;
+}
+
+// Switches / checkboxes: Bootstrap defaults to blue “active”; align with executive gold theme
+.form-check-input[type="checkbox"] {
+  --bs-form-check-bg: #{$theme-surface-light};
+  border-color: rgba($theme-primary, 0.42) !important;
+  background-color: var(--bs-form-check-bg) !important;
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    border-color: rgba($theme-primary, 0.65) !important;
+    box-shadow: 0 0 0 0.2rem $theme-alpha-mid !important;
+  }
+
+  &:checked {
+    background-color: $theme-primary !important;
+    border-color: $theme-primary !important;
+  }
+}
+
+.form-switch .form-check-input {
+  accent-color: $theme-primary;
+  --bs-form-check-bg: rgba($theme-bg, 0.5);
+  border-color: rgba($theme-primary, 0.38) !important;
+  background-color: rgba($theme-bg, 0.45) !important;
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    background-position 0.22s ease-in-out,
+    box-shadow 0.22s ease;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    border-color: rgba($theme-primary, 0.65) !important;
+    box-shadow: 0 0 0 0.2rem $theme-alpha-mid !important;
+  }
+
+  &:checked {
+    background-color: $theme-primary !important;
+    border-color: $theme-primary !important;
+  }
+}
+
+.form-switch .form-check-label {
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+  padding-left: 0.35rem;
+}
+
+.form-field-feedback {
+  min-height: 1.35rem;
+  margin-top: 0.35rem;
+}
+
+.form-error-message {
+  display: block;
+  margin-top: 0;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: $theme-danger;
+}
+
+.text-muted {
+  color: $theme-muted;
+}
+
+.custom-select {
+  &__control {
+    min-height: 46px !important;
+    padding: 5px 0 !important;
+    background-color: $theme-surface !important;
+    border: 1px solid $theme-alpha-mid !important;
+    box-shadow: none !important;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease !important;
+
+    &:hover {
+      border-color: $theme-alpha-strong !important;
+    }
+
+    &--is-focused {
+      border-color: $theme-alpha-strong !important;
+      box-shadow: 0 0 0 1px $theme-alpha-mid !important;
+    }
+  }
+
+  &__value-container {
+    padding: 0 8px;
+  }
+
+  &__single-value,
+  &__input-container,
+  &__dropdown-indicator,
+  &__clear-indicator {
+    color: $theme-primary !important;
+  }
+
+  &__placeholder {
+    color: $theme-text !important;
+  }
+
+  &__multi-value {
+    background: rgba($theme-primary, 0.18) !important;
+    border: 1px solid rgba($theme-primary, 0.42) !important;
+  }
+
+  &__multi-value__label {
+    color: $theme-heading !important;
+  }
+
+  &__multi-value__remove {
+    color: $theme-heading !important;
+
+    &:hover {
+      background: rgba($theme-danger, 0.32) !important;
+      color: #fff !important;
+    }
+  }
+
+  &__clear-indicator {
+    cursor: pointer;
+  }
+
+  &__menu,
+  &__menu-list {
+    background-color: $theme-surface !important;
+    z-index: 9999;
+  }
+
+  &__option {
+    color: $theme-primary !important;
+    background-color: $theme-surface !important;
+
+    &--is-focused,
+    &--is-selected {
+      color: $theme-surface !important;
+      background-color: $theme-primary !important;
+    }
+  }
+
+  &--uppercase {
+    .custom-select__single-value,
+    .custom-select__input-container,
+    .custom-select__option {
+      text-transform: uppercase;
+    }
+  }
+
+  &--error {
+    .custom-select__control {
+      border-color: $state-danger-strong !important;
+      box-shadow: 0 0 0 1px $state-danger-soft !important;
+    }
+  }
+
+  &__pending-badge {
+    font-size: 0.7rem;
+  }
+}
+
+.common-settings {
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba($luxury-primary-gold, 0.16);
+    border-radius: 14px;
+    background: linear-gradient(
+      145deg,
+      rgba($luxury-primary-gold, 0.06) 0%,
+      rgba($theme-bg, 0.52) 100%
+    );
+  }
+
+  &__title {
+    margin: 0;
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    font-weight: 700;
+    color: $theme-heading;
+  }
+
+  &__subtitle {
+    margin: 0.35rem 0 0;
+    color: $theme-text-muted-lighter;
+    font-size: 0.9rem;
+    max-width: 680px;
+    line-height: 1.55;
+  }
+
+  &__edit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+  }
+
+  &__logo-preview {
+    width: 100%;
+    max-width: 260px;
+    min-height: 92px;
+    padding: 0.65rem;
+    border: 1px dashed rgba($luxury-primary-gold, 0.35);
+    border-radius: 12px;
+    background: rgba($theme-bg, 0.45);
+
+    img {
+      width: 100%;
+      max-height: 110px;
+      object-fit: contain;
+      display: block;
+    }
+  }
+}
+
+.common-panel-card {
+  border: 1px solid rgba($luxury-primary-gold, 0.14);
+  border-radius: 14px;
+  margin-bottom: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba($theme-bg, 0.88) 0%,
+    rgba($surface-alpha-deep, 0.9) 100%
+  );
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+
+  > .card-header {
+    border-bottom: 1px solid rgba($luxury-primary-gold, 0.14);
+    background: linear-gradient(
+      120deg,
+      rgba($luxury-primary-gold, 0.12) 0%,
+      rgba($theme-bg, 0.35) 100%
+    );
+    color: $theme-heading;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  > .card-body {
+    padding: 1rem;
+  }
+}
+
+.common-form-card {
+  border: 1px solid rgba($theme-primary, 0.24);
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba($theme-surface, 0.92) 0%,
+      rgba($theme-bg, 0.96) 100%
+    ),
+    rgba($theme-surface, 0.88);
+  box-shadow:
+    0 16px 36px rgba($black, 0.28),
+    inset 0 1px 0 rgba($white, 0.06);
+  padding: 1.1rem;
+
+  .custom-heading-theam {
+    margin-bottom: 0.85rem;
+  }
+
+  .show-password-icon {
+    cursor: pointer;
+  }
+}
+
+.user-profile-card {
+  .user-profile-tabs.nav.nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba($theme-primary, 0.65) rgba($theme-bg, 0.45);
+    border-bottom: 1px solid rgba($theme-primary, 0.32);
+    margin-bottom: 1.25rem !important;
+    padding-bottom: 0.25rem;
+    gap: 0.25rem;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba($theme-bg, 0.5);
+      border: 1px solid rgba($theme-primary, 0.18);
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(
+        135deg,
+        rgba($theme-primary, 0.78) 0%,
+        rgba($theme-secondary, 0.82) 100%
+      );
+      border: 1px solid rgba($theme-primary, 0.55);
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(
+        135deg,
+        rgba($theme-primary, 0.9) 0%,
+        rgba($theme-secondary, 0.92) 100%
+      );
+    }
+
+    .nav-item {
+      margin-bottom: 0;
+      flex: 0 0 auto;
+    }
+
+    .nav-link {
+      white-space: nowrap;
+      border: 1px solid transparent;
+      border-radius: 8px 8px 0 0;
+      color: rgba($theme-text-on-surface, 0.75);
+      background: transparent;
+      font-family: $cerebri-semi;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.5rem 0.9rem;
+      transition: all 0.2s ease;
+
+      &:hover,
+      &:focus {
+        color: $theme-secondary;
+        border-color: rgba($theme-primary, 0.25);
+        background: rgba($theme-primary, 0.08);
+      }
+
+      &.active {
+        color: $theme-bg;
+        border-color: rgba($theme-primary, 0.55);
+        border-bottom-color: transparent;
+        background: linear-gradient(
+          135deg,
+          rgba($theme-primary, 0.88) 0%,
+          rgba($theme-secondary, 0.92) 100%
+        );
+        box-shadow: 0 6px 18px rgba($theme-primary, 0.22);
+      }
+    }
+  }
+}
+
+// Legal & policy pages — themed section panels (avoid Bootstrap light backgrounds)
+.common-form-card.user-profile-card.legal-pages-admin {
+  .legal-pages-admin__section {
+    border: 1px solid rgba($theme-primary, 0.22);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(
+      145deg,
+      rgba($theme-surface, 0.72) 0%,
+      rgba($theme-bg, 0.88) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgba($white, 0.05),
+      0 4px 14px rgba($black, 0.12);
+
+    &:last-of-type {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .legal-pages-admin__section-meta {
+    color: rgba($theme-text-on-surface, 0.68);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}
+
+.common-panel-card.about-us-admin {
+  .about-us-admin__section {
+    border: 1px solid rgba($theme-primary, 0.22);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(
+      145deg,
+      rgba($theme-surface, 0.72) 0%,
+      rgba($theme-bg, 0.88) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgba($white, 0.05),
+      0 4px 14px rgba($black, 0.12);
+  }
+
+  .about-us-admin__section-meta {
+    color: rgba($theme-text-on-surface, 0.68);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .about-us-admin__image-preview {
+    img {
+      max-width: 220px;
+      max-height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba($theme-primary, 0.25);
+    }
+  }
+}
+
+.entity-table-card {
+  border: 1px solid rgba($luxury-primary-gold, 0.14);
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba($theme-bg, 0.88) 0%,
+    rgba($surface-alpha-deep, 0.9) 100%
+  );
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+
+  > .card-body {
+    padding: 0;
+    background: transparent;
+  }
+
+  .rdt_TableWrapper,
+  .rdt_Table,
+  .rdt_TableBody,
+  .rdt_TableHead,
+  .rdt_Pagination {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  .rdt_Pagination {
+    border-top: 1px solid rgba($luxury-primary-gold, 0.14);
+    padding: 0.5rem 0.75rem 0.75rem;
+  }
+
+  .ecom-pagination {
+    margin-top: 0;
+    padding: 0.75rem 1rem 0.5rem;
+    background: transparent;
+  }
+}
+
+.entity-table-actions {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0;
+  padding: 0.35rem 0;
+
+  &--nowrap {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+
+  &--wrap {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__btn {
+    min-width: 76px;
+    white-space: nowrap;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  &__btn--icon {
+    min-width: 36px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      font-size: 1rem;
+    }
+  }
+}
+
+.entity-status-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.entity-status {
+  font-weight: 600;
+  border: 1px solid transparent;
+
+  &--active {
+    background: rgba($theme-success, 0.18);
+    color: $theme-success;
+    border-color: rgba($theme-success, 0.28);
+  }
+
+  &--inactive {
+    background: rgba($theme-danger, 0.15);
+    color: $theme-danger;
+    border-color: rgba($theme-danger, 0.28);
+  }
+}
+
+.entity-form__select {
+  .custom-select__menu {
+    z-index: 1057;
+  }
+}
+
+.claim-policy-modal {
+  .common-modal-header {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.claim-policy-select {
+  &__control {
+    min-height: 52px !important;
+    background: $theme-surface !important;
+    border: 1px solid $theme-alpha-mid !important;
+    box-shadow: none !important;
+  }
+
+  &__value-container {
+    gap: 0.25rem;
+  }
+
+  &__placeholder,
+  &__single-value,
+  &__input-container {
+    color: $theme-text !important;
+  }
+
+  &__multi-value {
+    background: rgba($theme-primary, 0.18) !important;
+    border: 1px solid rgba($theme-primary, 0.42) !important;
+  }
+
+  &__multi-value__label {
+    color: $theme-heading !important;
+  }
+
+  &__multi-value__remove {
+    color: $theme-heading !important;
+
+    &:hover {
+      background: rgba($theme-danger, 0.32) !important;
+      color: #fff !important;
+    }
+  }
+
+  &__menu,
+  &__menu-list {
+    background: $theme-surface !important;
+  }
+
+  &__menu-portal {
+    z-index: 1080 !important;
+  }
+
+  &__option {
+    color: $theme-text !important;
+    background: $theme-surface !important;
+  }
+
+  &__option--is-focused,
+  &__option--is-selected {
+    color: $theme-bg !important;
+    background: $theme-primary !important;
+  }
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.custom-checkbox input {
+  accent-color: #c89b3c;
+  cursor: pointer;
+}
+
+.custom-checkbox span {
+  cursor: pointer;
+}
+
+.summary-stats-cards {
+  &__button {
+    width: 100%;
+    display: block;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    text-align: inherit;
+    cursor: pointer;
+
+    .summary-stats-cards__card {
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    &:hover .summary-stats-cards__card {
+      transform: translateY(-1px);
+      border-color: rgba($theme-primary, 0.35);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+    }
+
+    &.is-active .summary-stats-cards__card {
+      border-color: rgba($theme-primary, 0.5);
+      box-shadow: 0 0 0 1px rgba($theme-primary, 0.3);
+    }
+  }
+}
+
+@media #{$xs} {
+  .common-form-card {
+    padding: 0.85rem;
+    border-radius: 12px;
+  }
+}
+
+// ============================================
+// PRODUCT VARIANT — ADMIN PRICE DISPLAY
+// ============================================
+.pv-admin-price {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem;
+  line-height: 1.35;
+}
+
+.pv-admin-price__mrp {
+  font-size: 0.88em;
+  text-decoration: line-through;
+}
+
+// ============================================
+// PRODUCT VARIANT — SIZES & PER-SIZE STOCK
+// ============================================
+.pv-sizes-grid {
+  margin-top: 0.25rem;
+}
+
+.pv-size-card {
+  background: linear-gradient(
+    180deg,
+    rgba($theme-primary, 0.06) 0%,
+    rgba($theme-bg, 0.6) 100%
+  );
+  border: 1px solid rgba($theme-primary, 0.22);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem 0.6rem;
+  box-shadow: inset 0 1px 0 rgba($white, 0.04);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+
+  &:hover,
+  &:focus-within {
+    border-color: rgba($theme-primary, 0.5);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  }
+
+  &__label {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.25rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid rgba($theme-primary, 0.55);
+    background: rgba($theme-primary, 0.14);
+    color: $theme-heading;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  &__hint {
+    color: $theme-text-muted-light;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  &__sub-label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $theme-text-muted-light;
+    margin-bottom: 0.25rem;
+  }
+
+  // Inherit the form's dark input styling.
+  // Keep number input (stock) compact and right-aligned; free-text inputs/textareas
+  // (e.g. hover description) must read naturally left-to-right.
+  input.form-control[type="number"] {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+
+  textarea.form-control,
+  input.form-control:not([type="number"]) {
+    text-align: left;
+    direction: ltr;
+    unicode-bidi: plaintext;
+  }
+
+  textarea.form-control {
+    resize: vertical;
+    min-height: 4.25rem;
+    line-height: 1.45;
+  }
+}
+
+// ============================================
+// PRODUCT VARIANT — DYNAMIC SIZE CHART
+// ============================================
+.pv-size-chart-section {
+  margin-top: 0.75rem;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid rgba($theme-primary, 0.4);
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba($theme-primary, 0.08) 0%,
+    rgba($theme-bg, 0.65) 100%
+  );
+  box-shadow: inset 0 0 0 1px rgba($theme-primary, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.18);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.35rem;
+
+    h6 {
+      color: $theme-heading;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.18rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgba($theme-primary, 0.45);
+    background: rgba($theme-primary, 0.12);
+    color: $theme-heading;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+
+.pv-size-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+
+  &__block {
+    padding: 0.85rem;
+    border: 1px dashed rgba($theme-primary, 0.28);
+    border-radius: 10px;
+    background: rgba($theme-bg, 0.45);
+
+    &-head {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      margin-bottom: 0.55rem;
+    }
+
+    &-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: $theme-heading;
+    }
+
+    &-hint {
+      font-size: 0.78rem;
+      color: rgba($theme-text, 0.65);
+    }
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.55rem;
+    min-height: 2rem;
+    align-items: center;
+  }
+
+  &__chips-empty {
+    font-size: 0.78rem;
+    color: rgba($theme-text, 0.55);
+    font-style: italic;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.55rem 0.25rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba($theme-primary, 0.55);
+    background: linear-gradient(
+      180deg,
+      rgba($theme-primary, 0.22) 0%,
+      rgba($theme-primary, 0.08) 100%
+    );
+    color: $theme-heading;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__chip-remove {
+    border: none;
+    background: rgba($theme-bg, 0.55);
+    color: rgba($theme-text, 0.85);
+    width: 1.25rem;
+    height: 1.25rem;
+    line-height: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: rgba($theme-danger, 0.5);
+      color: #fff;
+    }
+  }
+
+  &__presets {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.55rem;
+  }
+
+  &__presets-label {
+    font-size: 0.72rem;
+    color: rgba($theme-text, 0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-right: 0.15rem;
+  }
+
+  &__preset {
+    border: 1px solid rgba($theme-primary, 0.35);
+    background: rgba($theme-bg, 0.4);
+    color: rgba($theme-text, 0.9);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease,
+      border-color 0.15s ease;
+
+    &:hover:not(:disabled) {
+      background: rgba($theme-primary, 0.18);
+      border-color: rgba($theme-primary, 0.55);
+      color: $theme-heading;
+    }
+
+    &:disabled,
+    &--disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  &__locked {
+    padding: 0.4rem 0.1rem 0;
+  }
+
+  &__add {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+
+    .pv-size-chart__add-input {
+      max-width: 22rem;
+    }
+  }
+
+  &__table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba($theme-primary, 0.22);
+    border-radius: 8px;
+  }
+
+  &__table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+
+    thead th {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(
+        180deg,
+        rgba($theme-primary, 0.18) 0%,
+        rgba($theme-bg, 0.85) 100%
+      );
+      color: $theme-heading;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.55rem 0.65rem;
+      border-bottom: 1px solid rgba($theme-primary, 0.28);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .pv-size-chart__th--measure {
+      text-align: left;
+      min-width: 11rem;
+    }
+
+    .pv-size-chart__th--action {
+      width: 2.4rem;
+    }
+
+    tbody td,
+    tbody th {
+      padding: 0.4rem 0.5rem;
+      border-bottom: 1px solid rgba($theme-primary, 0.12);
+      vertical-align: middle;
+    }
+
+    tbody tr:last-child td,
+    tbody tr:last-child th {
+      border-bottom: none;
+    }
+
+    .pv-size-chart__row-label .form-control {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      min-width: 10rem;
+    }
+
+    td .form-control {
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      min-width: 5rem;
+    }
+
+    .pv-size-chart__row-action {
+      text-align: right;
+    }
+  }
+
+  &__remove-btn {
+    width: 1.8rem;
+    height: 1.8rem;
+    line-height: 1;
+    border-radius: 50%;
+    border: 1px solid rgba($theme-danger, 0.45);
+    background: transparent;
+    color: rgba($theme-danger, 0.85);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: rgba($theme-danger, 0.18);
+      color: #fff;
+    }
+  }
+
+  &--empty {
+    padding: 0.6rem 0.25rem 0;
+  }
+}

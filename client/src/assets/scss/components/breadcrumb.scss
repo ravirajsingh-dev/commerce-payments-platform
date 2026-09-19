@@ -1,0 +1,154 @@
+@use "../variables" as *;
+
+.common-breadcrumb {
+  --bc-title-max: min(100%, 52rem);
+  --bc-trail-max: min(100%, 56rem);
+  width: 100%;
+  text-align: center;
+  padding: clamp(1.75rem, 4.5vw, 3.25rem) clamp(0.75rem, 3vw, 1.5rem)
+    clamp(1.1rem, 2.8vw, 2rem);
+  padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
+  padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  &__inner {
+    margin: 0 auto;
+    max-width: min(100%, 72rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.55rem, 1.5vw, 0.95rem);
+  }
+
+  &__title {
+    margin: 0;
+    max-width: var(--bc-title-max);
+    padding: 0 0.25rem;
+    font-size: clamp(1.1rem, 1.2vw + 0.85rem, 2.75rem);
+    font-weight: 500;
+    letter-spacing: clamp(0.08em, 0.1em + 0.35vw, 0.2em);
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: $theme-heading;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    text-wrap: balance;
+    text-shadow:
+      0 0 28px rgba($theme-primary, 0.22),
+      0 1px 0 rgba($black, 0.35);
+  }
+
+  &__trail {
+    max-width: var(--bc-trail-max);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 0.4rem;
+    column-gap: 0;
+    font-size: clamp(0.66rem, 0.85vw + 0.4rem, 0.9rem);
+    letter-spacing: clamp(0.06em, 0.08em + 0.18vw, 0.13em);
+    text-transform: uppercase;
+    color: rgba($theme-primary, 0.9);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  &__segment {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__sep {
+    margin: 0 0.18em;
+    color: rgba($theme-primary, 0.48);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    user-select: none;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: 0.3rem 0.4rem;
+    margin: -0.2rem -0.1rem;
+    color: rgba($theme-secondary, 0.95);
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: $white;
+        text-shadow: 0 0 18px rgba($white, 0.35);
+      }
+    }
+
+    &:focus-visible {
+      color: $white;
+      outline: 2px solid rgba($theme-primary, 0.55);
+      outline-offset: 2px;
+    }
+  }
+
+  &__text {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.3rem 0.2rem;
+    color: rgba($theme-secondary, 0.88);
+  }
+
+  &__current {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.3rem 0.2rem;
+    color: rgba($theme-heading, 0.95);
+    font-weight: 600;
+  }
+}
+
+@media #{$xs} {
+  .common-breadcrumb {
+    padding-top: clamp(1.4rem, 5vw, 2.2rem);
+    padding-bottom: clamp(0.95rem, 3.5vw, 1.6rem);
+
+    &__title {
+      letter-spacing: 0.09em;
+      line-height: 1.22;
+    }
+
+    &__trail {
+      letter-spacing: 0.065em;
+      row-gap: 0.32rem;
+    }
+
+    &__sep {
+      margin: 0 0.1em;
+    }
+
+    &__link,
+    &__text,
+    &__current {
+      min-height: 2.35rem;
+      padding-inline: 0.3rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .common-breadcrumb__link {
+    transition: none;
+  }
+}

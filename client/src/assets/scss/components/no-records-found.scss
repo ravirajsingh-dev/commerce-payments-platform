@@ -1,0 +1,53 @@
+@use "../variables" as *;
+
+.no-records-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.75rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.no-records-found:not(.no-records-found--compact) {
+  min-height: min(440px, 52vh);
+  padding: 3rem 1.5rem;
+}
+
+.no-records-found--compact {
+  padding: 2rem 1rem;
+  min-height: 260px;
+}
+
+.no-records-found__title {
+  margin: 0 0 0.4rem;
+  font-family: $cerebri-bold;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $theme-heading;
+  line-height: 1.35;
+}
+
+.no-records-found--compact .no-records-found__title {
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+.no-records-found__description {
+  margin: 0;
+  max-width: 28rem;
+  font-family: $futurabook;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: $theme-muted;
+}
+
+.no-records-found--compact .no-records-found__description {
+  font-size: 0.9rem;
+}

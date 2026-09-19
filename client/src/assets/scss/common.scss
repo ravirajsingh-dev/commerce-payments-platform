@@ -1,0 +1,473 @@
+@use "./variables" as *;
+
+input:not([type="checkbox"]):not([type="radio"]),
+textarea {
+  background-color: $theme-surface-light;
+  border: 1px solid $white-alpha-soft;
+  color: $theme-text;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &::placeholder {
+    color: $theme-muted;
+  }
+
+  &:focus {
+    border-color: $theme-primary;
+    box-shadow: 0 0 0 0.2rem $theme-alpha-mid;
+    outline: 0;
+  }
+
+  &:disabled {
+    background-color: $theme-surface-alt;
+    color: rgba($theme-text-on-surface, 0.96);
+    -webkit-text-fill-color: rgba($theme-text-on-surface, 0.96);
+  }
+}
+
+// Bootstrap form controls sometimes force textarea/input white background.
+// Keep all text inputs aligned with the dark-gold theme.
+.form-control,
+textarea.form-control,
+input.form-control {
+  background-color: $theme-surface-light !important;
+  color: $theme-text !important;
+  border-color: $white-alpha-soft !important;
+
+  &::placeholder {
+    color: $theme-muted !important;
+  }
+
+  &:focus {
+    background-color: $theme-surface-light !important;
+    color: $theme-text !important;
+    border-color: $theme-primary !important;
+    box-shadow: 0 0 0 0.2rem $theme-alpha-mid !important;
+  }
+
+  &:disabled {
+    background-color: rgba($theme-bg, 0.45) !important;
+    color: rgba($theme-text-on-surface, 0.96) !important;
+    -webkit-text-fill-color: rgba($theme-text-on-surface, 0.96) !important;
+    border-color: rgba($theme-primary, 0.24) !important;
+    opacity: 1;
+  }
+}
+
+label {
+  color: $theme-heading;
+}
+
+.form-field-feedback {
+  min-height: 1.35rem;
+  margin-top: 0.35rem;
+}
+
+.form-error-message {
+  display: block;
+  margin-top: 0;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: $theme-danger;
+}
+
+.text-muted {
+  color: $theme-muted;
+}
+
+.common-form-card {
+  border: 1px solid rgba($theme-primary, 0.24);
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba($theme-surface, 0.92) 0%,
+      rgba($theme-bg, 0.96) 100%
+    ),
+    rgba($theme-surface, 0.88);
+  box-shadow:
+    0 16px 36px rgba($black, 0.28),
+    inset 0 1px 0 rgba($white, 0.06);
+  padding: 1.1rem;
+
+  .custom-heading-theam {
+    margin-bottom: 0.85rem;
+  }
+
+  .show-password-icon {
+    cursor: pointer;
+  }
+}
+
+.user-profile-card {
+  .user-profile-tabs.nav.nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba($theme-primary, 0.65) rgba($theme-bg, 0.45);
+    border-bottom: 1px solid rgba($theme-primary, 0.32);
+    margin-bottom: 1.25rem !important;
+    padding-bottom: 0.25rem;
+    gap: 0.25rem;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba($theme-bg, 0.5);
+      border: 1px solid rgba($theme-primary, 0.18);
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(
+        135deg,
+        rgba($theme-primary, 0.78) 0%,
+        rgba($theme-secondary, 0.82) 100%
+      );
+      border: 1px solid rgba($theme-primary, 0.55);
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(
+        135deg,
+        rgba($theme-primary, 0.9) 0%,
+        rgba($theme-secondary, 0.92) 100%
+      );
+    }
+
+    .nav-item {
+      margin-bottom: 0;
+      flex: 0 0 auto;
+    }
+
+    .nav-link {
+      white-space: nowrap;
+      border: 1px solid transparent;
+      border-radius: 8px 8px 0 0;
+      color: rgba($theme-text-on-surface, 0.75);
+      background: transparent;
+      font-family: $cerebri-semi;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.5rem 0.9rem;
+      transition: all 0.2s ease;
+
+      &:hover,
+      &:focus {
+        color: $theme-secondary;
+        border-color: rgba($theme-primary, 0.25);
+        background: rgba($theme-primary, 0.08);
+      }
+
+      &.active {
+        color: $theme-bg;
+        border-color: rgba($theme-primary, 0.55);
+        border-bottom-color: transparent;
+        background: linear-gradient(
+          135deg,
+          rgba($theme-primary, 0.88) 0%,
+          rgba($theme-secondary, 0.92) 100%
+        );
+        box-shadow: 0 6px 18px rgba($theme-primary, 0.22);
+      }
+    }
+  }
+
+  .form-control:disabled {
+    background: rgba($theme-bg, 0.45);
+    color: rgba($theme-text-on-surface, 0.96);
+    -webkit-text-fill-color: rgba($theme-text-on-surface, 0.96);
+    border-color: rgba($theme-primary, 0.24);
+    opacity: 1;
+  }
+}
+
+@media #{$xs} {
+  .common-form-card {
+    padding: 0.85rem;
+    border-radius: 12px;
+  }
+}
+
+// Lightweight CMS-style pages linked from the footer
+.static-info-page {
+  color: $theme-text-on-surface;
+}
+
+.static-info-page-inner {
+  max-width: 40rem;
+}
+
+.static-info-page-title {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  color: $theme-heading;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.static-info-page-lead {
+  color: $theme-text-muted-lighter;
+  line-height: 1.65;
+  font-size: 1rem;
+}
+
+.static-info-page-link {
+  color: $theme-primary;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: $theme-secondary;
+    text-decoration: underline;
+  }
+}
+
+// Legal / policy pages (heading + text sections from admin)
+.legal-content-page {
+  color: $theme-text-on-surface;
+}
+
+.legal-content-page-inner {
+  max-width: 52rem;
+}
+
+.legal-content-page-header {
+  .legal-content-page-title {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+
+  .legal-content-page-eyebrow {
+    margin-bottom: 0.5rem;
+  }
+
+  &--centered {
+    text-align: center;
+  }
+}
+
+.legal-content-page-title {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  color: $theme-heading;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.legal-content-section:last-child {
+  margin-bottom: 0 !important;
+}
+
+.legal-content-body > .legal-content-section:first-child .legal-content-section-heading {
+  margin-top: 0;
+}
+
+.legal-content-body {
+  color: rgba($theme-text, 0.9);
+  font-size: 1rem;
+  line-height: 1.7;
+
+  h2,
+  h3,
+  h4 {
+    color: $theme-heading;
+    font-weight: 600;
+    margin-top: 1.75rem;
+    margin-bottom: 0.65rem;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  }
+
+  h3 {
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+  }
+
+  h4 {
+    font-size: 1.05rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 1rem;
+    padding-left: 1.35rem;
+  }
+
+  li {
+    margin-bottom: 0.35rem;
+  }
+
+  a {
+    color: $theme-primary;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: $theme-secondary;
+    }
+  }
+
+  strong,
+  b {
+    color: rgba($theme-text, 0.95);
+    font-weight: 600;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid rgba($theme-primary, 0.35);
+    margin: 1.5rem 0;
+  }
+}
+
+// About Us — dynamic brand story sections
+.about-us-page {
+  color: $theme-text-on-surface;
+}
+
+.about-us-hero {
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(2rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba($theme-primary, 0.2);
+  background: linear-gradient(
+    165deg,
+    rgba($theme-surface, 0.55) 0%,
+    rgba($theme-bg, 0.92) 55%,
+    rgba($theme-bg, 1) 100%
+  );
+}
+
+.about-us-hero__inner {
+  max-width: 44rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-us-hero__eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $theme-primary;
+  margin-bottom: 0.75rem;
+}
+
+.about-us-hero__title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  color: $theme-heading;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+.about-us-hero__intro {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.7;
+  color: $theme-text-muted-lighter;
+}
+
+.about-us-sections {
+  padding: clamp(2rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 5rem);
+}
+
+.about-us-block {
+  padding: clamp(1.75rem, 4vw, 2.75rem) 0;
+  border-bottom: 1px solid rgba($theme-primary, 0.12);
+
+  &:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.about-us-block__media {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba($theme-primary, 0.28);
+  background: rgba($theme-surface, 0.6);
+  box-shadow:
+    0 8px 32px rgba($black, 0.35),
+    inset 0 1px 0 rgba($white, 0.06);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      transparent 60%,
+      rgba($theme-bg, 0.35) 100%
+    );
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 28rem;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.about-us-block__content {
+  padding: 0.25rem 0;
+}
+
+.about-us-block__heading {
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  color: $theme-heading;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  line-height: 1.25;
+  position: relative;
+  padding-bottom: 0.65rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 3rem;
+    height: 2px;
+    background: linear-gradient(90deg, $theme-primary, transparent);
+  }
+}
+
+.about-us-block__text {
+  color: rgba($theme-text, 0.9);
+  font-size: 1rem;
+  line-height: 1.75;
+
+  p {
+    margin: 0 0 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .about-us-block--reverse .row {
+    flex-direction: row-reverse;
+  }
+}

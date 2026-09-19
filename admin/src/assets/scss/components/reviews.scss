@@ -1,0 +1,130 @@
+@use "../variables" as *;
+
+.review-page {
+  &__hint {
+    display: block;
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: $theme-text-muted-light !important;
+  }
+}
+
+.review-table {
+  .rdt_TableCol:nth-child(4),
+  .rdt_TableCell:nth-child(4) {
+    white-space: normal !important;
+    align-items: flex-start !important;
+  }
+
+  .rdt_TableCol:last-child,
+  .rdt_TableCell:last-child {
+    min-width: 280px !important;
+    flex: 0 0 280px !important;
+  }
+
+  &__primary {
+    display: block;
+    color: $theme-text;
+    font-weight: 600;
+    line-height: 1.35;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__meta {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.82rem;
+    line-height: 1.35;
+    color: $theme-text-muted-light;
+  }
+
+  &__review-cell {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  &__review-title {
+    display: block;
+    color: $theme-text;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  &__comment {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: $theme-text-muted-light;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  &__date {
+    font-size: 0.82rem;
+    color: $theme-text-muted-light;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 600;
+    color: $theme-secondary;
+  }
+
+  &__stars {
+    display: inline-flex;
+    gap: 0.1rem;
+    color: $theme-primary;
+
+    svg {
+      font-size: 0.9rem;
+    }
+  }
+
+  &__star-empty {
+    color: rgba($theme-text-muted-light, 0.45);
+  }
+}
+
+.review-detail {
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+    margin-bottom: 0.85rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  &__label {
+    flex: 0 0 110px;
+    font-weight: 600;
+    color: $theme-primary;
+  }
+
+  &__value {
+    flex: 1 1 200px;
+    color: $theme-text;
+    min-width: 0;
+  }
+
+  &__comment-block {
+    margin-top: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background: rgba($theme-primary, 0.08);
+    border: 1px solid $theme-border;
+    color: $theme-text;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
