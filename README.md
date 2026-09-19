@@ -18,6 +18,12 @@ End-to-end commerce system covering catalog, checkout, orders, inventory, shipme
 - Payment method and payment-status tracking (COD plus gateway-ready methods)
 - Admin analytics, coupons, and operations tools
 
+## Architecture
+
+- Storefront and admin talk to a Node.js REST API
+- Orders, inventory, and payment status live in MongoDB
+- Payment webhooks update order state after signature verification
+
 ## Local setup
 
 1. Copy `.env.example` to `.env` and fill in MongoDB, JWT, email, and object-storage values.
